@@ -31,10 +31,10 @@ const NavBar = () => {
                                     <Link to="/tickets">Pending</Link>
                                 </li>
                                 <li>
-                                    <Link to="/completed">Completed</Link>
+                                    <Link to="/completed">Complete</Link>
                                 </li>
                                 <li>
-                                    <Link to="/new_ticket">Create Ticket</Link>
+                                    <Link to="/new_ticket">Create</Link>
                                 </li>
                                 <li>
                                     <Link to="/logout">Logout</Link>

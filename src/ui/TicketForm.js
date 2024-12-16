@@ -20,22 +20,23 @@ function TicketForm({
 }) {
     const { actions } = useContext(TicketContext);
 
-
     const [ errors, setErrors ] = useState([]);
     const [ errorString, setErrorString ] = useState('');
+
     const [tSummary, setTSummery] = useState('');
     const [tPriority, setTPriority] = useState(priority || 'Low');
     const [tStatus, setTStatus] = useState(status || 'Created');
 
-    let initialCount = 1;
+    
     
     function validateForm  () {
     // tSummary.trim() === "" ||
+        let initialCount = 1;
         let hasError = false;
-        setErrors( errors => []);
-        
-        setErrorString( errorString => []);
-        console.log( errorString );
+        setErrors( errors => [] );         
+        // setErrorString( errorString => []);
+        setErrorString( '' );
+
         let finalSummary = '';
         let finalPriority = '';
         let finalStatus = '';
@@ -71,7 +72,7 @@ function TicketForm({
             }
         } else { 
             {errors.map( error => {
-                setErrorString( [...errorString,  <p>{error}</p> ]); 
+                setErrorString( [ <p>{error}</p> ]); 
             })}
         }
     }
@@ -89,6 +90,7 @@ function TicketForm({
                         <p>string</p>
                     )
                 })}
+                setErrors(  [] );
             </>
         )
     }
@@ -100,34 +102,36 @@ function TicketForm({
             <div className="errorDiv">
                 {errorString}
             </div>
-            <div className="form">
-                <div class="formLeft flex column">
+            <div id="form">
+                <div className="form">
+                    <div class="formLeft flex column">
 
-                <label htmlFor="summary">Summary</label>
-                <label htmlFor="priority">Priority</label>
-                <label htmlFor="createDate">Create Date</label>
-                <label htmlFor="status">Status</label>
+                    <label htmlFor="summary">Summary</label>
+                    <label htmlFor="priority">Priority</label>
+                    <label htmlFor="createDate">Create Date</label>
+                    <label htmlFor="status">Status</label>
+                    </div>
+                    <div class="formRight flex column">
+
+
+                    <input type="text" name="summary" defaultValue={tSummary} onChange={(e) => setTSummery(e.target.value)} disabled={readonly} />
+                    
+                    <select name="priority" defaultValue={tPriority} onChange={(e) => setTPriority(e.target.value)} disabled={readonly}>
+                        <option>Low</option>
+                        <option>Moderate</option>
+                        <option>High</option>
+                    </select>
+                    <select name="status" defaultValue={tStatus} onChange={(e) => setTStatus(e.target.value)} disabled={readonly}>
+                        <option>Created</option>
+                        <option>Rejected</option>
+                        <option>In Progress</option>
+                        <option>Resolved</option>
+                    </select>
+                    <input type="date" defaultValue={formatDate(create_date)} name="createDate" />
+                    </div>
                 </div>
-                <div class="formRight flex column">
-
-
-                <input type="text" name="summary" defaultValue={tSummary} onChange={(e) => setTSummery(e.target.value)} disabled={readonly} />
-                {/* <input type="text" name="summary" defaultValue={tSummary} onChange={(e) => setTSummery(e.target.value)} disabled={readonly} /> */}
-                <select name="priority" defaultValue={tPriority} onChange={(e) => setTPriority(e.target.value)} disabled={readonly}>
-                    <option>Low</option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                </select>
-                <select name="status" defaultValue={tStatus} onChange={(e) => setTStatus(e.target.value)} disabled={readonly}>
-                    <option>Created</option>
-                    <option>Rejected</option>
-                    <option>In Progress</option>
-                    <option>Resolved</option>
-                </select>
-                <input type="date" defaultValue={formatDate(create_date)} name="createDate" />
-                </div>
+                <button onClick={() => validateForm()} >Submit</button>
             </div>
-            <button onClick={() => validateForm()} >Submit</button>
         </div>
     )
 }

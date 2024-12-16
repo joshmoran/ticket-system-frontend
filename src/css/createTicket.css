@@ -37,3 +37,26 @@ label {
     width: 50%;
     box-sizing: border-box;
 }
+
+input, select  { 
+    padding: 0.5em 1em;
+    margin: 0.25em 0;
+    min-width: 100%;
+}
+
+*:focus {
+    border: 5px solid black;
+}
+
+label {
+    padding: 0.25em 1em;
+    margin: 0.25em 0;
+    min-width: 100%;
+}
+
+button {
+    display: flex;
+    padding: 0.5em 5rem;
+    margin: 1.25em auto;
+    width: fit-content;
+}
