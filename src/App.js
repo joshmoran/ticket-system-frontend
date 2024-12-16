@@ -18,6 +18,8 @@ import SpecificTicket from './pages/SpecificTicket'
 
 import AltNavBar from './pages/AltNavBar';
 import Register from './pages/Register';
+
+
 import NavBar from './pages/NavBar.js';
 import NewTicket from './pages/NewTicket.js';
 import Logout from './pages/Logout';
