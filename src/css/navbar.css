@@ -1,0 +1,26 @@
+header {
+    width: 100%;
+
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.nav li {
+    list-style-type: none;
+
+    width: 10em;
+}
+
+.nav a {
+    background-color: white;
+    border: 1px solid black;
+    padding: 1em;
+    text-align: center;
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+}

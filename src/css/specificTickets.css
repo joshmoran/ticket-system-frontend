@@ -1,0 +1,68 @@
+.container {
+    /* margin: 4em auto 1em auto; */
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    justify-items: center;
+}
+
+.container > * {
+    
+    width: 80%;
+}
+
+.backBtn { 
+    background: white;
+    color: black;
+    padding: 0.5em 1em;
+    border-radius: 25px;
+}
+
+.backBtn:hover { 
+    /* background-color: black; */
+    color: black;
+}
+
+.backBtnDiv { 
+    background-color: white;
+    opacity: 100%;
+    color: black;
+    height: inherit;
+}
+
+.backBtnDiv *:hover {
+    color: white;
+    background-color: black;
+}
+
+.messageDiv, .details {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.messageDiv {
+    border: 1px solid black;
+    width: 40em;
+    margin: 0.5em auto;
+    text-align: center;
+
+
+}
+
+.messageDetails { 
+    display: flex;
+    flex-direction:  row;
+}
+
+.messageDetails p {
+    width: 50%;
+
+}
+
+p { 
+    margin: 0;
+    padding: 0;
+}

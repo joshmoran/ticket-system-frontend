@@ -1,0 +1,6 @@
+.errorDiv {
+    background-color: red;
+    width: fit-content;
+    padding: 0.25em;
+    margin: 0.5em;
+}

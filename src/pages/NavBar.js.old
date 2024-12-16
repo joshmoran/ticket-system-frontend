@@ -1,0 +1,23 @@
+import { React, useContext } from "react";
+import {  Link } from "react-router-dom";
+import TicketContext from "../context/TicketContext";
+
+const NavBar = () => {
+    const context = useContext(TicketContext);
+    return ( 
+        <TicketContext.Consumer>
+            {context => {
+                return (        
+                    <nav>
+                        <div>
+                            <Link to="/tickets">All Tickets</Link>
+                            <Link to="/new_ticket">Create Ticket</Link>
+                        </div>
+                    </nav>
+                )
+            }}
+        </TicketContext.Consumer>
+    );
+}
+
+export default NavBar;

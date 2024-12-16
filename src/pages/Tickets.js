@@ -1,0 +1,115 @@
+
+import '../css/tickets.css';
+
+// Import Libraries 
+import {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
+
+// Functions 
+import { fetchAllPending, fetchAllPendingBy } from '../service/ticketService';
+
+import { writeName, writeStatus, writePriority, writeDate } from '../service/ticketActions';
+
+// Consumer 
+import TicketContext from '../context/TicketContext';
+
+// UI ELements
+import AllTickets from '../ui/AllTickets';
+
+const Tickets = ( status ) => {
+    const [tickets, setTickets ] = useState([]);
+    const [sortPriority, setSortPriority] = useState('asc');
+    const [sortStatus, setSortStatus] = useState('asc');
+    const [sortName, setSortName] = useState('asc');
+    const [sortCreateDate, setSortCreateDate] = useState('asc');
+    const [sortUploadDate, setSortUploadDate] = useState('asc');
+    
+    const getTicketInfo = async () => { 
+        return setTickets(await fetchAllPending());
+    }
+    const getTicketsByColumn = async ( column, method ) => {
+        return setTickets(await fetchAllPendingBy(column, method ));
+    }    
+
+    const sortByColumn = ( column, method ) => {
+        return getTicketsByColumn( column, method );
+    }
+
+    useEffect( () => {
+        getTicketInfo();
+
+    }, []);
+
+    return (
+        <TicketContext.Consumer>
+            { context => {
+                return (
+                    <div className="container">
+                        <h1 className="title">Pending Tickets</h1>
+                        <div className="actions">
+                            {/*  */}
+                            {/* SORT BY NAME */}
+                            {/*  */}
+                            <button className="btnAction" onClick={() => {
+                            if ( sortName == 'asc' || sortName == '') {
+                                setSortName('desc');
+                            } else { 
+                                setSortName('asc');
+                            }
+                            sortByColumn( 'summary', sortName );
+                            }}>Sort By Name <br /> <span>{writeName( sortName )}</span></button>
+                            {/*  */}
+                            {/* SORT BY PRIORITY */}
+                            {/*  */}
+                            <button className="btnAction" onClick={() => {
+                            if ( sortPriority == 'asc' || sortPriority == '') {
+                                setSortPriority('desc');
+                            } else { 
+                                setSortPriority('asc');
+                            }
+                            sortByColumn( 'priority', sortPriority );
+                            }}>Sort By Priority <br /> <span>{writePriority( sortPriority )}</span></button>
+                            {/*  */}
+                            {/* SORT BY STATUS */}
+                            {/*  */}
+                            <button className="btnAction" onClick={() => {
+                            if ( sortStatus == 'asc' || sortStatus == '') {
+                                setSortStatus('desc');
+                            } else { 
+                                setSortStatus('asc');
+                            }
+                            sortByColumn( 'status',sortStatus );
+                            }}>Sort By Status <br /> <span>{writeStatus( sortStatus )}</span></button>
+                            {/*  */}
+                            {/* SORT BY CREATED DATE  */}
+                            {/*  */}
+                            <button className="btnAction" onClick={() => {
+                            sortByColumn( 'create_date' ,sortCreateDate );
+                            if ( sortCreateDate == 'asc' || sortCreateDate == '') {
+                                setSortCreateDate('desc');
+                            } else { 
+                                setSortCreateDate('asc');
+                            }
+                            }}>Sort By Created Date <br /> <span>{writeDate( sortCreateDate )}</span></button>
+                            {/*  */}
+                            {/* SORT BY UPLOAD DATE */}
+                            {/*  */}
+                            <button className="btnAction" onClick={() => {
+                            sortByColumn( 'update_date', sortUploadDate );
+                            if (  sortUploadDate == 'asc' ||  sortUploadDate == '') {
+                                setSortUploadDate('desc');
+                            } else { 
+                                setSortUploadDate('asc');
+                            }
+                            }}>Sort By Updated Date<br /> <span>{writeDate( sortUploadDate )}</span></button>
+                            
+                        </div>
+                        <AllTickets isCompleted={false} tickets={tickets}></AllTickets>
+                    </div> 
+                )
+            }}
+        </TicketContext.Consumer>
+    )
+}
+
+export default Tickets;
