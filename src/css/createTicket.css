@@ -1,6 +1,39 @@
-.errorDiv {
-    background-color: red;
+/* .errorDiv {
     width: fit-content;
     padding: 0.25em;
     margin: 0.5em;
+} */
+
+.errorDiv {
+    border: 1px solid red;
+    margin: 1em auto;
+    padding: 1em 0.5em;
+    color: #000;
+    text-align: center;
+    width: fit-content;
+    min-width: 50%;
+}
+
+.form {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+label { 
+    width: 50%;
+}
+
+.form label, .form input {
+    box-sizing: border-box;
+    width: 50%;
+}
+
+
+.formLeft, .formRight {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
 }
