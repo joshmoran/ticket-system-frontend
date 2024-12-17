@@ -18,6 +18,8 @@ const SpecificTicket = ( prop ) => {
     const [ messages, setMessages ] = useState([]);
     const [tMessage, setTMessage] = useState('');
 
+    const [ changeStatus, setChangeStatus ] = useState();
+
     const navigate = useNavigate();
 
     let indexKey = 0;
@@ -89,8 +91,21 @@ const SpecificTicket = ( prop ) => {
                             </div>
                         )
                     })}
+
+                    <div className="actions">
+                        <select name="status" id="statusChange" onChange={(e) => setChangeStatus(e.target.value)}>
+                            <option value="CREATED">Created</option>
+                            <option value="REJECTED">Rejected</option>
+                            <option value="IN PROGRESS">In Progress</option>
+                            <option value="RESOLVED">Resolved</option>
+                        </select> 
+                        <button onClick={(e) => {
+                            console.log( changeStatus );
+                        }}>Change Status</button>
+                    </div>
                     
                     <div className='addComment'> 
+                        <h2>Comments</h2>
                         <input type="text" value={tMessage} className="messageInput" onChange={(e) => setTMessage(e.target.value)} /> 
                         <button onClick={(e) => {
                             if ( tMessage == '' || typeof tMessage == 'undefined') {
@@ -115,9 +130,8 @@ const SpecificTicket = ( prop ) => {
                                 }
                                 setTMessage('');
                             }
-                        }}>Add</button>
+                        }}>Add Comment</button>
                     </div>
-                    <h2>Comments</h2>
                     <div id="messages">
                     {messages.length === 0? <p>No comments yet</p> : null}
             
