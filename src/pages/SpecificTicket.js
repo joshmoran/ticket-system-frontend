@@ -3,7 +3,7 @@ import '../css/specificTickets.css';
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate  } from 'react-router-dom';
 
-import { fetchTicket, fetchTicketComments } from '../service/ticketService';
+import { fetchTicket, fetchTicketComments, changeStatus } from '../service/ticketService';
 
 import { formatDate } from '../service/formatDate';
 import { formatTime } from '../service/formatTime';
@@ -14,11 +14,12 @@ import Tickets from './Tickets';
 const SpecificTicket = ( prop ) => {
     const { key, ticketUser, actions } = useContext(TicketContext) ;
     const [ticket, setTicket] = useState([]);
+    const [ id, setId ] = useState();
 
     const [ messages, setMessages ] = useState([]);
     const [tMessage, setTMessage] = useState('');
 
-    const [ changeStatus, setChangeStatus ] = useState();
+    const [ changeState, setChangeState ] = useState();
 
     const navigate = useNavigate();
 
@@ -34,23 +35,28 @@ const SpecificTicket = ( prop ) => {
 
     const getTicket = async () => {
         return setTicket( await fetchTicket(key));
+        console.log( ticket[0].status );
     }
 
     const getMessages = async () => {
         return setMessages(await fetchTicketComments(key));
     }
 
-    useEffect( () => {
-        // getTicket();
-        // setTMessage();
-        getMessages();
-    }, [])
+    const changeTicketStatus = async(  ) => {
+        const changeTo = changeState;
+        const changeID = id;
+        await changeStatus(id,changeState );
+        await getTicket();
+    }
 
+    const refreshPage = ()=>{
+        window.location.reload();
+     }
 
     useEffect( () => {
         getTicket();
         getMessages();
-        // handleCommentSubmit();
+        changeTicketStatus();
     }, [] );
 
     return ( 
@@ -73,7 +79,7 @@ const SpecificTicket = ( prop ) => {
                         let updatedDate = formatDate( value.update_date );
 
                         let updatedTimeAndDate = value.update_date;
-                        
+                        setId( value.id );
                         return (
                             <div className="details" key={value.id}>
                                 <h2>Ticket Details</h2>
@@ -93,14 +99,18 @@ const SpecificTicket = ( prop ) => {
                     })}
 
                     <div className="actions">
-                        <select name="status" id="statusChange" onChange={(e) => setChangeStatus(e.target.value)}>
+                        <select className="ticketActions" name="status" id="statusChange" onChange={(e) => {
+                            setChangeState(e.target.value)
+                            
+                        }}>
                             <option value="CREATED">Created</option>
                             <option value="REJECTED">Rejected</option>
                             <option value="IN PROGRESS">In Progress</option>
                             <option value="RESOLVED">Resolved</option>
                         </select> 
-                        <button onClick={(e) => {
-                            console.log( changeStatus );
+                        <button onClick={ () => {
+
+                        changeTicketStatus();
                         }}>Change Status</button>
                     </div>
                     

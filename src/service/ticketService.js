@@ -35,6 +35,12 @@ export const createMessage = async (message) => {
     return await rawResponse.json();
 };
 
+export const changeStatus = async (id, status) => {
+    const rawResponse = await fetch(`${BASE_URL}/change/${id}/${status}`);
+    console.log( id + ' ' + status);
+    return await rawResponse
+}
+
 export const fetchAllPending = async () => {
     const rawResponse = await fetch(`${BASE_URL}/pending`);
     return await rawResponse.json();

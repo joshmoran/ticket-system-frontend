@@ -9,8 +9,11 @@
 }
 
 .container > * {
-    
     width: 80%;
+}
+
+.ticketActions {
+    width: 50% !important;
 }
 
 .backBtn { 
@@ -38,9 +41,14 @@
 }
 
 .messageDiv, .details {
-
     display: flex;
     flex-direction: column;
+}
+
+.messageInput {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
 }
 
 .messageDiv {
@@ -48,8 +56,6 @@
     width: 40em;
     margin: 0.5em auto;
     text-align: center;
-
-
 }
 
 .messageDetails { 
