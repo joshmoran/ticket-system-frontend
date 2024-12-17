@@ -5,7 +5,9 @@ import {useState, useEffect} from 'react';
 
 // Functions 
 import { fetchAllCompleted, fetchAllCompletedBy } from '../service/ticketService';
+
 import { writeName, writeStatus, writePriority, writeDate } from '../service/ticketActions';
+
 
 // Consumer 
 import TicketContext from '../context/TicketContext';
@@ -25,7 +27,8 @@ const Tickets = (  ) => {
         return setTickets(await fetchAllCompleted());
     }
     const getTicketsByColumn = async ( column, method ) => {
-        return setTickets(await fetchAllCompletedBy(column, method ));
+    return setTickets(await fetchAllCompletedBy(column, method ));
+
     }
 
     const sortByColumn = async ( column, method ) => {
@@ -48,7 +51,7 @@ const Tickets = (  ) => {
                             {/* SORT BY NAME */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
-                            if ( sortName === 'asc' || sortName === '') {
+                            if ( sortName == 'asc' || sortName == '') {
                                 setSortName('desc');
                             } else { 
                                 setSortName('asc');
@@ -59,7 +62,7 @@ const Tickets = (  ) => {
                             {/* SORT BY PRIORITY */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
-                            if ( sortPriority === 'asc' || sortPriority === '') {
+                            if ( sortPriority == 'asc' || sortPriority == '') {
                                 setSortPriority('desc');
                             } else { 
                                 setSortPriority('asc');
@@ -70,7 +73,7 @@ const Tickets = (  ) => {
                             {/* SORT BY STATUS */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
-                            if ( sortStatus === 'asc' || sortStatus === '') {
+                            if ( sortStatus == 'asc' || sortStatus == '') {
                                 setSortStatus('desc');
                             } else { 
                                 setSortStatus('asc');
@@ -82,7 +85,7 @@ const Tickets = (  ) => {
                             {/*  */}
                             <button className="btnAction" onClick={() => {
                             sortByColumn( 'create_date' ,sortCreateDate );
-                            if ( sortCreateDate === 'asc' || sortCreateDate === '') {
+                            if ( sortCreateDate == 'asc' || sortCreateDate == '') {
                                 setSortCreateDate('desc');
                             } else { 
                                 setSortCreateDate('asc');
@@ -93,7 +96,7 @@ const Tickets = (  ) => {
                             {/*  */}
                             <button className="btnAction" onClick={() => {
                             sortByColumn( 'update_date', sortUploadDate );
-                            if (  sortUploadDate === 'asc' ||  sortUploadDate === '') {
+                            if (  sortUploadDate == 'asc' ||  sortUploadDate == '') {
                                 setSortUploadDate('desc');
                             } else { 
                                 setSortUploadDate('asc');
