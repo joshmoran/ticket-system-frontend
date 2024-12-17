@@ -1,14 +1,3 @@
-// import React from 'react';
-// // import {  Link } from "react-router-dom";
-// const NavBar= () =>{
-//   return (
-//   <div>
-//     <h1>Test</h1>
-//   </div>
-//   );
-// }
-// export default NavBar;
-
 import '../css/navbar.css';
 
 import { React, useContext } from "react";

@@ -16,7 +16,6 @@ export const fetchTicketComments = async (id) => {
 }
 
 export const createMessage = async (message) => {
-    const id = message.ticket_id;
     const rawResponse = await fetch(`${BASE_URL}/message`, {
         method: 'POST',
         headers: {
@@ -27,7 +26,6 @@ export const createMessage = async (message) => {
     });
 
     if ( rawResponse.status !== 200 ) {
-        console.log(message);
         console.log('Could not create a ticket');
         return null;
     }
@@ -37,7 +35,6 @@ export const createMessage = async (message) => {
 
 export const changeStatus = async (id, status) => {
     const rawResponse = await fetch(`${BASE_URL}/change/${id}/${status}`);
-    console.log( id + ' ' + status);
     return await rawResponse
 }
 

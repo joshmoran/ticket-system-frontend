@@ -5,9 +5,7 @@ import {useState, useEffect} from 'react';
 
 // Functions 
 import { fetchAllCompleted, fetchAllCompletedBy } from '../service/ticketService';
-
 import { writeName, writeStatus, writePriority, writeDate } from '../service/ticketActions';
-
 
 // Consumer 
 import TicketContext from '../context/TicketContext';
@@ -27,8 +25,7 @@ const Tickets = (  ) => {
         return setTickets(await fetchAllCompleted());
     }
     const getTicketsByColumn = async ( column, method ) => {
-    return setTickets(await fetchAllCompletedBy(column, method ));
-
+        return setTickets(await fetchAllCompletedBy(column, method ));
     }
 
     const sortByColumn = async ( column, method ) => {
@@ -51,57 +48,57 @@ const Tickets = (  ) => {
                             {/* SORT BY NAME */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
-                            if ( sortName == 'asc' || sortName == '') {
+                            if ( sortName === 'asc' || sortName === '') {
                                 setSortName('desc');
                             } else { 
                                 setSortName('asc');
                             }
                             sortByColumn( 'summary', sortName );
-                            }}>Sort By Name <br /> <span>{writeName( sortName )}</span></button>
+                            }}><span>Sort By Name</span><br /> <span>{writeName( sortName )}</span></button>
                             {/*  */}
                             {/* SORT BY PRIORITY */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
-                            if ( sortPriority == 'asc' || sortPriority == '') {
+                            if ( sortPriority === 'asc' || sortPriority === '') {
                                 setSortPriority('desc');
                             } else { 
                                 setSortPriority('asc');
                             }
                             sortByColumn( 'priority', sortPriority );
-                            }}>Sort By Priority <br /> <span>{writePriority( sortPriority )}</span></button>
+                            }}><span>Sort By Priority</span><br /> <span>{writePriority( sortPriority )}</span></button>
                             {/*  */}
                             {/* SORT BY STATUS */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
-                            if ( sortStatus == 'asc' || sortStatus == '') {
+                            if ( sortStatus === 'asc' || sortStatus === '') {
                                 setSortStatus('desc');
                             } else { 
                                 setSortStatus('asc');
                             }
                             sortByColumn( 'status',sortStatus );
-                            }}>Sort By Status <br /> <span>{writeStatus( sortStatus )}</span></button>
+                            }}><span>Sort By Status</span><br /> <span>{writeStatus( sortStatus )}</span></button>
                             {/*  */}
                             {/* SORT BY CREATED DATE  */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
                             sortByColumn( 'create_date' ,sortCreateDate );
-                            if ( sortCreateDate == 'asc' || sortCreateDate == '') {
+                            if ( sortCreateDate === 'asc' || sortCreateDate === '') {
                                 setSortCreateDate('desc');
                             } else { 
                                 setSortCreateDate('asc');
                             }
-                            }}>Sort By Created Date <br /> <span>{writeDate( sortCreateDate )}</span></button>
+                            }}><span>Sort By Date Created</span><br /> <span>{writeDate( sortCreateDate )}</span></button>
                             {/*  */}
                             {/* SORT BY UPLOAD DATE */}
                             {/*  */}
                             <button className="btnAction" onClick={() => {
                             sortByColumn( 'update_date', sortUploadDate );
-                            if (  sortUploadDate == 'asc' ||  sortUploadDate == '') {
+                            if (  sortUploadDate === 'asc' ||  sortUploadDate === '') {
                                 setSortUploadDate('desc');
                             } else { 
                                 setSortUploadDate('asc');
                             }
-                            }}>Sort By Updated Date<br /> <span>{writeDate( sortUploadDate )}</span></button>
+                            }}><span>Sort By Date Updated</span><br /> <span>{writeDate( sortUploadDate )}</span></button>
                             
                         </div>
                         <AllTickets isCompleted={false} tickets={tickets}></AllTickets>

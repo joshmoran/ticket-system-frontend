@@ -1,6 +1,4 @@
-import { act, react, useContext } from 'react';
-import { Link } from'react-router-dom';
-
+import { useContext } from 'react';
 import TicketContext from '../context/TicketContext';
 
 const Register = () => {
@@ -19,7 +17,7 @@ const Register = () => {
                 return (
                     <div>
                         <h2>Registration Page</h2>
-                        <p>To coninue to view tickets, please login</p>
+                        <p>To continue to view tickets, please login</p>
                         <p>Their is no authentication as of right now, so any username and password will work</p>
                         <form onSubmit={actions.register}>
                             <h2>Personal Information</h2>

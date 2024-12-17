@@ -42,28 +42,14 @@ a:hover {
     white-space: normal;
     margin: 0 1em;
     border-radius: 7px;
+    flex-direction: column;
+}
+
+.btnAction span {
+    text-align: center;
+    width: 100%;
 }
 
 tr:hover {
     background-color: lightgray;
 }
-/* 
-aside {
-    width: 40%;
-    height: 90vh;
-    overflow: auto;
-    text-align: center;
-}
-
-aside > div { 
-    padding: 0.5em;
-    border-top: 5px solid black;
-}
-
-main {
-    border-left: 5px solid black;
-    width: 60%;
-    padding: 1em;
-    margin-left: 40%;
-    margin-top: 0;
-} */

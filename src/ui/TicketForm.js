@@ -3,7 +3,6 @@ import { formatDate } from '../util/dateUtil';
 
 import TicketContext from "../context/TicketContext";
 
-
 import '../css/createTicket.css';
 
 function TicketForm({
@@ -14,9 +13,6 @@ function TicketForm({
     create_date = new Date(),
     update_date = new Date(),
     readonly = false,
-    onSubmit = ()=> {
-        // alert( tSummary );
-    },
 }) {
     const { actions } = useContext(TicketContext);
 
@@ -26,24 +22,18 @@ function TicketForm({
     const [tSummary, setTSummery] = useState('');
     const [tPriority, setTPriority] = useState(priority || 'Low');
     const [tStatus, setTStatus] = useState(status || 'Created');
-
-    
     
     function validateForm  () {
-    // tSummary.trim() === "" ||
-        let initialCount = 1;
         let hasError = false;
         setErrors( errors => [] );         
-        // setErrorString( errorString => []);
         setErrorString( '' );
 
         let finalSummary = '';
         let finalPriority = '';
         let finalStatus = '';
 
-        console.log( errors );
         // Check Summary String
-        if ( tSummary == 'undefined' || tSummary == '') {
+        if ( tSummary === 'undefined' || tSummary === '') {
             setErrors( errors => [ ...errors, "Name must not be empty" ]);
             hasError = true;
         } else {
@@ -59,8 +49,6 @@ function TicketForm({
                     priority : finalPriority,
                     status : finalStatus,
                 };
-
-                console.log(sending)
             
                 actions.createTicket( sending );
 
@@ -112,7 +100,6 @@ function TicketForm({
                     <label htmlFor="status">Status</label>
                     </div>
                     <div class="formRight flex column">
-
 
                     <input type="text" name="summary" defaultValue={tSummary} onChange={(e) => setTSummery(e.target.value)} disabled={readonly} />
                     

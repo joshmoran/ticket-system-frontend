@@ -1,6 +1,9 @@
 header {
     width: 100%;
+}
 
+header h1 {
+    margin: 0.25em auto 1em auto;
 }
 
 .nav {

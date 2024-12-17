@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 
 import TicketContext from '../context/TicketContext';
+import TicketForm from '../ui/TicketForm';
 
-import TicketForm from '../ui/TicketForm'
 const NewTicket = () => {
     const { actions } = useContext(TicketContext);
 

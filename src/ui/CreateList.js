@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react';
 
 import TicketContext from '../context/TicketContext';
-
 import ShowTicket from '../ui/ShowTicket';
-
 
 const CreateListItem = ( data ) => { 
     const { actions } = useContext(TicketContext);

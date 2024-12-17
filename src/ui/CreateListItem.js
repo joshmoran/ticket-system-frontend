@@ -16,11 +16,6 @@ const CreateListItem = ( data ) => {
         navigate(linked);
     }
 
-    const checkClick = () => {
-        document.location.href = linked;
-        
-    }
-
     let updatedTime = formatTime( data.data.update_date );
     let updatedDate = formatDate( data.data.update_date );
 

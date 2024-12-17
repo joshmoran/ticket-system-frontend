@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect} from 'react';
 
 import TicketContext from '../context/TicketContext';
-
 import { fetchTicket } from '../service/ticketService';
 
 const ShowTicket = (  ) => {

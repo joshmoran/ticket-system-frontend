@@ -9,7 +9,6 @@ import { formatDate } from '../service/formatDate';
 import { formatTime } from '../service/formatTime';
 
 import TicketContext from "../context/TicketContext";
-import Tickets from './Tickets';
 
 const SpecificTicket = ( prop ) => {
     const { key, ticketUser, actions } = useContext(TicketContext) ;
@@ -19,7 +18,7 @@ const SpecificTicket = ( prop ) => {
     const [ messages, setMessages ] = useState([]);
     const [tMessage, setTMessage] = useState('');
 
-    const [ changeState, setChangeState ] = useState();
+    const [ changeState, setChangeState ] = useState('CREATED');
 
     const navigate = useNavigate();
 
@@ -27,15 +26,13 @@ const SpecificTicket = ( prop ) => {
 
     let url = window.location.href.split('/');
     url = url.slice(-1);
-    console.log( url );
 
-    if ( key == null || key == 'undefined' || key != url )  {
+    if ( ( key === null || key === 'undefined' ) || key !== url )  {
         navigate('/tickets');
     }
 
     const getTicket = async () => {
         return setTicket( await fetchTicket(key));
-        console.log( ticket[0].status );
     }
 
     const getMessages = async () => {
@@ -43,15 +40,14 @@ const SpecificTicket = ( prop ) => {
     }
 
     const changeTicketStatus = async(  ) => {
-        const changeTo = changeState;
-        const changeID = id;
         await changeStatus(id,changeState );
         await getTicket();
     }
 
-    const refreshPage = ()=>{
-        window.location.reload();
-     }
+    const completeTicket = async () => {
+        await changeStatus(id,'COMPLETED');
+        await getTicket();
+    }
 
     useEffect( () => {
         getTicket();
@@ -73,12 +69,9 @@ const SpecificTicket = ( prop ) => {
                         let createdTime = formatTime( value.create_date );
                         let createdDate = formatDate( value.create_date );
 
-                        let createdTimeAndDate = value.create_date; 
-
                         let updatedTime = formatTime( value.update_date );
                         let updatedDate = formatDate( value.update_date );
 
-                        let updatedTimeAndDate = value.update_date;
                         setId( value.id );
                         return (
                             <div className="details" key={value.id}>
@@ -98,32 +91,35 @@ const SpecificTicket = ( prop ) => {
                         )
                     })}
 
-                    <div className="actions">
-                        <select className="ticketActions" name="status" id="statusChange" onChange={(e) => {
-                            setChangeState(e.target.value)
-                            
-                        }}>
-                            <option value="CREATED">Created</option>
-                            <option value="REJECTED">Rejected</option>
-                            <option value="IN PROGRESS">In Progress</option>
-                            <option value="RESOLVED">Resolved</option>
-                        </select> 
-                        <button onClick={ () => {
+                    <div className="ticketActions">
+                        <div className="row">
+                            <select className="ticketActions" name="status" id="statusChange" onChange={(e) => setChangeState(e.target.value) }>
+                                <option value="CREATED">Created</option>
+                                <option value="REJECTED">Rejected</option>
+                                <option value="IN PROGRESS">In Progress</option>
+                                <option value="RESOLVED">Resolved</option>
+                            </select> 
+                            <button onClick={ () => {
 
-                        changeTicketStatus();
-                        }}>Change Status</button>
+                            changeTicketStatus();
+                            }}>Change Status</button>
+                        </div>
+                        <div className="row">
+                            <button onClick={ () => {
+                                completeTicket();
+                            }}>Complete Ticket</button>
+                        </div>
                     </div>
                     
                     <div className='addComment'> 
                         <h2>Comments</h2>
                         <input type="text" value={tMessage} className="messageInput" onChange={(e) => setTMessage(e.target.value)} /> 
                         <button onClick={(e) => {
-                            if ( tMessage == '' || typeof tMessage == 'undefined') {
+                            if ( tMessage === '' || typeof tMessage === 'undefined') {
                                 alert('Please enter a comment');
                                 return;
                             } else { 
-                                if ( key != null && tMessage != '' || tMessage != null ) {
-                                    console.log( ticketUser ) ;
+                                if ( key !== null && ( tMessage !== '' || tMessage !== null ) ) {
                                     let sending = {
                                         "ticket_id" : key,
                                         "username" : ticketUser,

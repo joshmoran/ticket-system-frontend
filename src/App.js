@@ -1,12 +1,9 @@
-
-import './App.css';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import { createTicket, fetchAllTickets } from './service/ticketService';
 import {BrowserRouter as Router, Routes,  Route, Navigate } from 'react-router-dom';
 // import TicketForm from './components/TicketForm/TicketForm';
 
 import {createTicket, createMessage} from './service/ticketService';
-
 
 // Content Provider 
 import TicketContext from './context/TicketContext';
@@ -26,7 +23,7 @@ import Logout from './pages/Logout';
 import Completed from './pages/Completed.js';
 
 import Error from './pages/Error';
-// Pages for when user is logge
+// Pages for when user is logged
 
 function App() {
   const [ticketUser, setTicketUser ] = useState('josh', 'password');
@@ -35,32 +32,6 @@ function App() {
   const [sortStatus, setSortStatus] = useState('asc');
   const [sortName, setSortName] = useState('asc');
 
-  // const [ putTicket, setPutTicket ] = useState(null);
-  
-
-  // const [tickets, setTickets ] = useState([]);
-  // const [ticket, setTicket] = useState({});
-
-  // const getAllTickets = async () => {
-  //   setTickets(await fetchAllTickets());
-  // };
-
-  // const sendCreateRequest = async (id, summary, priority, status, create_date, update_date) => {
-  //   const createdTicket = await createTicket({
-  //     id, summary, priority, status, create_date, update_date
-  //   });
-
-  //   if (!createdTicket) {
-  //     return;
-  //   }
-
-  //   getAllTickets();
-  //   setTicket(createdTicket);
-  // };
-
-  // useEffect( () => {
-  //   getAllTickets();
-  // }, []);
   const logoutUser = () => {
     setTicketUser(null);
   }

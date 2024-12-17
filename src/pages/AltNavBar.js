@@ -1,14 +1,3 @@
-// import React from 'react';
-// // import {  Link } from "react-router-dom";
-// const NavBar= () =>{
-//   return (
-//   <div>
-//     <h1>Test</h1>
-//   </div>
-//   );
-// }
-// export default NavBar;
-
 import { React, useContext } from "react";
 import {  Link } from "react-router-dom";
 import TicketContext from "../context/TicketContext";

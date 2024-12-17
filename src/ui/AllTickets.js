@@ -2,7 +2,6 @@ import '../css/table.css';
 import ListItem from "./ListItem";
 
 const AllTickets = ( prop) => {
-    {console.log(prop)}
     return (
         <div className='content'>
             <table>
