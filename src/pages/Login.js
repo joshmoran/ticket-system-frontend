@@ -1,5 +1,4 @@
-import { react, useContext } from 'react';
-import { Link } from'react-router-dom';
+import {  useContext } from 'react';
 
 import TicketContext from '../context/TicketContext';
 
@@ -17,17 +16,22 @@ const Login = () => {
         <TicketContext.Consumer>
             { context => {
                 return (
-                    <div>
+                    <div class="login">
                         <h2>Login Page</h2>
                         <p>To continue to view tickets, please login</p>
                         <p>Their is no authentication as of right now, so any username and password will work</p>
-                        <form onSubmit={loginFunction}>
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" />
-                            <br />
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" />
-                            <br />
+                        <form className="loginForm" onSubmit={loginFunction}>
+                            <div className="formEl">
+                                <div className="loginRow">  
+                                    <label for="username">Username</label>
+                                    <label for="password">Password</label>
+                                </div>
+                                <div className="loginRow">
+                                    <input type="text" id="username" name="username" />
+                                    <input type="password" id="password" name="password" />
+                                </div>
+                            </div>
+
                             <button type="submit">Login</button>
                         </form>
                     </div>

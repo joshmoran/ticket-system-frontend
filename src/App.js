@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import { createTicket, fetchAllTickets } from './service/ticketService';
-import {BrowserRouter as Router, Routes,  Route, Navigate } from 'react-router-dom';
+import {BrowserRouter as Router, Routes,  Route, Navigate, BrowserRouter } from 'react-router-dom';
 // import TicketForm from './components/TicketForm/TicketForm';
 
 import {createTicket, createMessage} from './service/ticketService';
@@ -23,10 +23,12 @@ import Logout from './pages/Logout';
 import Completed from './pages/Completed.js';
 
 import Error from './pages/Error';
+
+
 // Pages for when user is logged
 
 function App() {
-  const [ticketUser, setTicketUser ] = useState('josh', 'password');
+  const [ticketUser, setTicketUser ] = useState();
   const [key, setKey] = useState(0);
   const [sortPriority, setSortPriority] = useState('asc');
   const [sortStatus, setSortStatus] = useState('asc');
@@ -46,7 +48,6 @@ function App() {
 
   const createUser = ( username, password ) => {
     setTicketUser(true);
-    alert('yes');
   }
 
   const putTicket= ( data ) => {
@@ -89,34 +90,34 @@ function App() {
       }
     }}>
     <div>
-      <Router>  
           { ticketUser ? ( 
             <>
-              <NavBar />
-              <Routes>
-                <Route path ="/" element={<Home />} />
-                <Route path ="tickets" element={<Tickets />} />
-                <Route path ="tickets/:id" element={<SpecificTicket />} />
-                
-                <Route path ="new_ticket" element={<NewTicket />} />
-                <Route path ="logout" element={<Logout /> } />
-                <Route path ="completed" element={<Completed />} />
-                <Route path="*" element={<Error />} />
-              </Routes>
+              <Router>
+                <NavBar />
+                <Routes>
+                  <Route path ="" element={<Home />} />
+                  <Route path ="tickets" element={<Tickets />} />
+                  <Route path ="tickets/:id" element={<SpecificTicket />} />
+                  
+                  <Route path ="new_ticket" element={<NewTicket />} />
+                  <Route path ="logout" element={<Logout /> } />
+                  <Route path ="completed" element={<Completed />} />
+                </Routes>
+              </Router>
             </>
           ) : ( 
             <>
-            <AltNavBar />
-            <Routes>
-              <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="*" element={<Navigate to ="/" />}/>
-            </Routes>
+              <Router>
+                <AltNavBar />
+                <Routes>
+                  <Route path="" index element={<Login />} />
+                  <Route path="login" index element={<Login />} />
+                  <Route path="register" element={<Register />} />
+                </Routes>
+              </Router>
             </>
           )
           }
-      </Router>
       </div>
       </TicketContext.Provider>
     );

@@ -83,8 +83,6 @@ function TicketForm({
         )
     }
 
-
-    
     return (
         <div className="TicketForm">
             <div className="errorDiv">
@@ -94,10 +92,10 @@ function TicketForm({
                 <div className="form">
                     <div class="formLeft flex column">
 
-                    <label htmlFor="summary">Summary</label>
-                    <label htmlFor="priority">Priority</label>
-                    <label htmlFor="createDate">Create Date</label>
-                    <label htmlFor="status">Status</label>
+                        <label htmlFor="summary">Summary</label>
+                        <label htmlFor="priority">Priority</label>
+                        <label htmlFor="status">Status</label>
+                        <label htmlFor="createDate">Create Date</label>
                     </div>
                     <div class="formRight flex column">
 

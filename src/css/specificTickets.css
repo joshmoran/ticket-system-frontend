@@ -49,10 +49,10 @@
     height: inherit;
 }
 
-.backBtnDiv *:hover {
+/* .backBtnDiv *:hover {
     color: white;
     background-color: black;
-}
+} */
 
 .addComment {
     margin: 2em auto 0 auto;
